@@ -34,7 +34,7 @@ namespace WebApplication8.Controllers
 
             };
             IdentityResult result=await _userManager.CreateAsync(appUser,registerVM.Password);
-            if(!!result.Succeeded)
+            if(result.Succeeded)
             {
                 foreach(IdentityError error in result.Errors)
                 {
