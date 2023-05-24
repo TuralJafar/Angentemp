@@ -23,7 +23,7 @@ namespace WebApplication8.ViewModels.Account
         public string Password { get; set; }
         [Required]
         [MinLength(8)]
-        [DataType(DataType.Password);
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
         
         
