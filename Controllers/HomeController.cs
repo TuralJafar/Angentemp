@@ -15,18 +15,13 @@ namespace WebApplication8.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
-        {
-            HomeVM homeVM = new HomeVM()
-            {
-                Products = await _context.Products.ToListAsync(),
-                Categories = await _context.Categories.ToListAsync(),
+		public IActionResult Index()
+		{
+			List<Product> products = _context.Products.Include(p => p.Category).ToList();
+			return View(products);
+		}
 
-            };
-            return View(homeVM);
-        }
-       
 
-       
-    }
+
+	}
 }

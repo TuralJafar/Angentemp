@@ -1,36 +1,40 @@
-﻿﻿
+﻿@using WebApplication8.ViewModels;
+﻿
 
-@model Product 
+@model UpdateProductVM
 
-<div class="container-fluid page-body-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update</h4>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <img src="~/assets/img/portfolio/@Model.Image" />
+                    <label asp-for="Photo">Image</label>
+                    <input asp-for="Photo" class="form-control" placeholder="Photo">
+                    <span class="text-danger" asp-validation-for="Photo"></span>
 
-      <div class="main-panel">        
-        <div class="content-wrapper">
-          <div class="row">
-
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Update Category</h4>
-                  <form class="forms-sample" method="post">
-                    <div class="form-group">
-                      <label  asp-for="Name">Name</label>
-                      <input  asp-for="Name" class="form-control" placeholder="Name" value="@Model.Name">
-                      <span class="text-danger" asp-validation-for="Name"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary me-2">Update</button>
-                    <a asp-action="index"  asp-controller="category" class="btn btn-light">Cancel</a>
-                  </form>
                 </div>
-              </div>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Name">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name" value="@Model.Name">
+                    <span class="text-danger" asp-validation-for="Name"></span>
 
-          </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId">Category</label>
+                    <select asp-for="CategoryId">
+                        @foreach (Category category in ViewBag.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span class="text-danger" asp-validation-for="CategoryId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-       
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
     </div>
+</div>
