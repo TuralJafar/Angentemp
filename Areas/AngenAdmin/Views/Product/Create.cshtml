@@ -1,0 +1,50 @@
+﻿@using WebApplication8.Models;
+
+@model Product
+
+
+<div class="container-fluid page-body-wrapper">
+
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Create Product</h4>
+                  <form class="forms-sample" method="post">
+                    <div class="form-group">
+                      <label  asp-for="Name">Name</label>
+                      <input  asp-for="Name" class="form-control" placeholder="Name">
+                      <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                     <div class="form-group">
+                                    <label asp-for="ImageUrl">ImageUrl</label>
+                                    
+                                    <input asp-for="ImageUrl" class="form-control">
+                                    <span class="text-danger" asp-validation-for="ImageUrl"></span>
+                    </div>
+                             
+                                @*<div class="form-group">
+                                    <label asp-for="Category">Categories</label>
+                                    <input asp-for="Category" class="form-control">
+                                    <span class="text-danger" asp-validation-for="Category.Name"></span>
+                                </div>*@
+
+                    <button type="submit" class="btn btn-primary me-2">Create</button>
+                    <a asp-action="index" asp-controller="product" class="btn btn-light">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
