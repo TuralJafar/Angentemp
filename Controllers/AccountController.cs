@@ -50,9 +50,28 @@ namespace WebApplication8.Controllers
         {
             return View();
         }
-        public IActionResult Logout()
+        [HttpPost]
+        public async Task<IActionResult>Login(LoginVM loginVM)
         {
-            return View();
+            if (!ModelState.IsValid) return View();
+            AppUser appUser = await _userManager.FindByEmailAsync(loginVM.UserNameOrEmail);
+            if(appUser == null)
+            {
+                appUser=await _userManager.FindByNameAsync(loginVM.UserNameOrEmail);
+                if(appUser == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Bele hesab yoxdur");
+                    return View();
+                }
+            }
+            await _signInManager.PasswordSignInAsync(appUser, loginVM.Password, false, true);
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Logout() { return View(); }
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {   await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
